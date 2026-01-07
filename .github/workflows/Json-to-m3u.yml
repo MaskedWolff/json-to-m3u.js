@@ -2,7 +2,7 @@ name: JSON to M3U Auto Fetch
 
 on:
   schedule:
-    - cron: "0 */6 * * *" # every 6 hours
+    - cron: "*/2 * * * *"   # every 2 minutes
   workflow_dispatch:
 
 jobs:
