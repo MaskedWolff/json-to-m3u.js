@@ -1,13 +1,12 @@
-name: JSON to M3U
+name: JSON to M3U Auto Fetch
 
 on:
-  push:
-    paths:
-      - "jiotv.json"
+  schedule:
+    - cron: "0 */6 * * *"   # har 6 ghante
   workflow_dispatch:
 
 jobs:
-  convert:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,10 +17,10 @@ jobs:
         with:
           node-version: 18
 
-      - name: Convert JSON → M3U
+      - name: Generate M3U
         run: node json-to-m3u.js
 
-      - name: Commit M3U
+      - name: Commit & Push
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
